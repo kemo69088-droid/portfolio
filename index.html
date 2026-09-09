@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kareem Ayman &mdash; Data Analyst</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap">
+    <meta name="description" content="Kareem Ayman — data analyst. Cleaning, analysing and reporting on messy data with Excel, SQL, Python and Power BI. AI undergraduate, Kafr El-Sheikh University. DEPI Data Science, Round 5.">
+    <meta name="author" content="Kareem Ayman">
+    <meta property="og:title" content="Kareem Ayman — Data Analyst">
+    <meta property="og:description" content="I turn messy, scattered data into clean reports that people can decide from.">
+    <meta property="og:type" content="profile">
+<link rel="canonical" href="">
+<style>
+  html { color-scheme: light dark; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+<style>
+/* ============================================================
+   KAREEM AYMAN — portfolio
+   Direction: statistical report / two-ink print.
+   Ground: plotting-paper grey-green. Inks: green-black + ultramarine.
+   Display: Bricolage Grotesque. Body: Newsreader. Data: IBM Plex Mono.
+   ============================================================ */
+
+:root {
+  --paper:      #DCE1DD;
+  --paper-sunk: #D2D8D3;
+  --ink:        #0F1513;
+  --muted:      #59635E;
+  --rule:       #B4BEB8;
+  --rule-soft:  #C6CEC9;
+  --accent:     #2135C4;
+  --accent-ink: #1A2A9C;
+  --accent-wash:rgba(33,53,196,.09);
+  --fig-b:      #A2532F;
+
+  --f-display: "Bricolage Grotesque", "Helvetica Neue", Helvetica, sans-serif;
+  --f-body:    "Newsreader", Georgia, "Times New Roman", serif;
+  --f-mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --f-ar:      "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+
+  --shell:  1200px;
+  --rail:   196px;
+  --gutter: 56px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #0C100E;
+    --paper-sunk: #131916;
+    --ink:        #DCE3DE;
+    --muted:      #8A948E;
+    --rule:       #262E2A;
+    --rule-soft:  #1C2320;
+    --accent:     #94A4FF;
+    --accent-ink: #B3BEFF;
+    --accent-wash:rgba(148,164,255,.11);
+    --fig-b:      #D4906A;
+  }
+}
+:root[data-theme="dark"] {
+  --paper:      #0C100E;
+  --paper-sunk: #131916;
+  --ink:        #DCE3DE;
+  --muted:      #8A948E;
+  --rule:       #262E2A;
+  --rule-soft:  #1C2320;
+  --accent:     #94A4FF;
+  --accent-ink: #B3BEFF;
+  --accent-wash:rgba(148,164,255,.11);
+  --fig-b:      #D4906A;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { overflow-x: clip; }
+
+body {
+  margin: 0;
+  overflow-x: clip;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.62;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* faint plotting grid, the page's one texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(to right, var(--rule-soft) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--rule-soft) 1px, transparent 1px);
+  background-size: 96px 96px;
+  opacity: .34;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; text-wrap: balance; margin: 0; }
+
+/* ---------- shell ---------- */
+.shell {
+  position: relative;
+  z-index: 1;
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 0 32px 0;
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  column-gap: var(--gutter);
+  align-items: start;
+}
+
+.skip {
+  position: absolute; left: -9999px;
+  background: var(--ink); color: var(--paper);
+  padding: 10px 16px; font-family: var(--f-mono); font-size: 12px; z-index: 50;
+}
+.skip:focus { left: 32px; top: 12px; }
+
+/* ---------- rail ---------- */
+.rail {
+  position: sticky;
+  top: 0;
+  padding: 40px 0 40px;
+  border-right: 1px solid var(--rule);
+  min-height: 100vh;
+  grid-row: 1 / -1;
+}
+.rail-mark {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0 20px 34px 0;
+}
+.rail-mark b { display: block; color: var(--ink); font-weight: 600; letter-spacing: .1em; }
+.toc { list-style: none; margin: 0; padding: 0; }
+.toc li { margin: 0; }
+.toc a {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  align-items: baseline;
+  gap: 6px;
+  padding: 7px 20px 7px 0;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: var(--muted);
+  border-left: 2px solid transparent;
+  padding-left: 12px;
+  margin-left: -14px;
+  transition: color .18s ease, border-color .18s ease;
+}
+.toc a:hover { color: var(--ink); }
+.toc a .n { color: var(--rule); }
+.toc a[aria-current="true"] { color: var(--accent); border-left-color: var(--accent); }
+.toc a[aria-current="true"] .n { color: var(--accent); }
+
+.rail-foot {
+  margin-top: 34px;
+  padding: 0 20px 0 0;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+.rail-foot a { display: block; color: var(--muted); }
+.rail-foot a:hover { color: var(--accent); }
+
+/* ---------- generic section ---------- */
+.body-col { min-width: 0; }
+section { padding: 74px 0 12px; scroll-margin-top: 24px; }
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  border-top: 1px solid var(--ink);
+  padding-top: 14px;
+  margin-bottom: 34px;
+}
+.sec-head .sig {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: .1em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.sec-head h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-variation-settings: "wdth" 88;
+  letter-spacing: -.015em;
+  line-height: 1.05;
+}
+.sec-head .aside {
+  margin-left: auto;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.measure { max-width: 62ch; }
+.measure p { margin: 0 0 1.05em; }
+.measure p:last-child { margin-bottom: 0; }
+.lead { font-size: 1.12rem; }
+
+/* ---------- hero ---------- */
+.hero { padding: 56px 0 8px; border: 0; }
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 26px;
+  display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center;
+}
+.eyebrow .dot { width: 6px; height: 6px; background: var(--accent); display: inline-block; }
+
+.hero h1 {
+  font-size: clamp(3.2rem, 11.5vw, 8.4rem);
+  line-height: .84;
+  letter-spacing: -.035em;
+  font-weight: 800;
+  font-variation-settings: "wdth" 78;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+.hero h1 .ln { display: block; overflow: hidden; }
+.hero h1 .ln > span { display: block; }
+
+.hero .role {
+  font-family: var(--f-mono);
+  font-size: clamp(12px, 1.5vw, 14px);
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 10px 0;
+  margin: 26px 0 34px;
+  display: flex; flex-wrap: wrap; gap: 4px 22px;
+}
+.hero .role em { font-style: normal; color: var(--muted); }
+
+.thesis {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-variation-settings: "wdth" 92;
+  font-size: clamp(1.45rem, 3.4vw, 2.5rem);
+  line-height: 1.16;
+  letter-spacing: -.02em;
+  max-width: 20ch;
+  margin: 0 0 18px;
+}
+.thesis mark { background: none; color: var(--accent); }
+
+.thesis-ar {
+  font-family: var(--f-ar);
+  direction: rtl;
+  text-align: right;
+  font-size: clamp(.98rem, 1.6vw, 1.16rem);
+  line-height: 1.95;
+  color: var(--muted);
+  max-width: min(46ch, 100%);
+  margin: 0 0 36px;
+  padding-right: 16px;
+  border-right: 2px solid var(--accent);
+}
+
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
+.btn {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  padding: 13px 22px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+:root[data-theme="dark"] .btn.primary { color: #0C100E; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.primary { color: #0C100E; } }
+.btn.primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); }
+
+.facts {
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+}
+.facts div { padding: 14px 16px 14px 0; border-right: 1px solid var(--rule-soft); }
+.facts div:last-child { border-right: 0; }
+.facts dt { color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-size: 10px; margin-bottom: 5px; }
+.facts dd { margin: 0; color: var(--ink); font-weight: 500; font-variant-numeric: tabular-nums; }
+
+/* ---------- services ---------- */
+.svc { border-top: 1px solid var(--rule); }
+.svc-item {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 190px;
+  gap: 0 28px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: start;
+}
+.svc-item .idx {
+  font-family: var(--f-mono); font-size: 12px; color: var(--accent);
+  padding-top: 5px; font-variant-numeric: tabular-nums;
+}
+.svc-item h3 {
+  font-size: 1.28rem; font-variation-settings: "wdth" 92; letter-spacing: -.015em;
+  margin-bottom: 8px; line-height: 1.2;
+}
+.svc-item p { margin: 0; color: var(--muted); max-width: 54ch; }
+.svc-item .stack {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em;
+  color: var(--muted); padding-top: 6px; line-height: 1.85;
+}
+.svc-item .stack span { display: block; color: var(--ink); }
+.svc-item .stack b { display: block; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-size: 10px; font-weight: 500; margin-bottom: 4px; }
+
+/* ---------- skills ---------- */
+.tier { border-bottom: 1px solid var(--rule); padding: 22px 0; display: grid; grid-template-columns: 118px minmax(0,1fr); gap: 0 28px; }
+.tier:first-child { border-top: 1px solid var(--rule); }
+.tier .tag {
+  font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--muted); padding-top: 9px;
+}
+.tier ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 26px; align-items: baseline; }
+.tier li { font-family: var(--f-display); letter-spacing: -.01em; }
+.tier-1 li { font-size: clamp(1.35rem, 3vw, 2.05rem); font-weight: 700; font-variation-settings: "wdth" 86; }
+.tier-2 li { font-size: clamp(1.02rem, 1.9vw, 1.28rem); font-weight: 500; font-variation-settings: "wdth" 94; }
+.tier-3 li { font-size: 1rem; font-weight: 400; color: var(--muted); }
+.tier li small { font-family: var(--f-mono); font-size: 10.5px; color: var(--muted); letter-spacing: .06em; display: block; font-weight: 400; }
+.tier.learning ul li { color: var(--accent); }
+
+.langs {
+  font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .06em;
+  color: var(--muted); padding-top: 18px;
+}
+.langs b { color: var(--ink); font-weight: 500; }
+
+/* ---------- projects ---------- */
+.fig { border-top: 1px solid var(--rule); padding: 40px 0 44px; }
+.fig:last-of-type { border-bottom: 1px solid var(--rule); }
+.fig-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 22px; }
+.fig-head .no {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--accent);
+  border: 1px solid var(--accent); padding: 3px 8px;
+}
+.fig-head h3 {
+  font-size: clamp(1.35rem, 3vw, 2rem); letter-spacing: -.022em;
+  font-variation-settings: "wdth" 84; line-height: 1.05; font-weight: 700;
+}
+.fig-head .status {
+  font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted);
+  background: var(--accent-wash); padding: 4px 9px;
+}
+.fig-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 34px; align-items: start; }
+.fig-copy p { margin: 0 0 1em; max-width: 46ch; }
+.fig-copy p:last-of-type { margin-bottom: 1.3em; }
+.fig-meta { border-top: 1px solid var(--rule); padding-top: 12px; font-family: var(--f-mono); font-size: 11px; line-height: 1.9; letter-spacing: .04em; }
+.fig-meta div { display: grid; grid-template-columns: 74px minmax(0,1fr); gap: 12px; }
+.fig-meta dt { color: var(--muted); text-transform: uppercase; letter-spacing: .11em; font-size: 10px; padding-top: 2px; }
+.fig-meta dd { margin: 0; color: var(--ink); }
+
+.plate { background: var(--paper-sunk); border: 1px solid var(--rule); padding: 16px; }
+.plate svg { display: block; width: 100%; height: auto; }
+.plate figcaption {
+  font-family: var(--f-mono); font-size: 10px; letter-spacing: .07em;
+  color: var(--muted); margin-top: 12px; border-top: 1px solid var(--rule-soft); padding-top: 8px;
+  line-height: 1.7;
+}
+
+/* ---------- timeline ---------- */
+.tl { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.tl > li {
+  display: grid; grid-template-columns: 132px minmax(0,1fr);
+  gap: 0 28px; padding: 24px 0; border-bottom: 1px solid var(--rule);
+}
+.tl .when {
+  font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .07em;
+  color: var(--accent); padding-top: 6px; font-variant-numeric: tabular-nums;
+}
+.tl h3 { font-size: 1.18rem; font-variation-settings: "wdth" 92; letter-spacing: -.012em; line-height: 1.25; margin-bottom: 3px; }
+.tl .org { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .05em; color: var(--muted); margin: 0 0 10px; }
+.tl p { margin: 0; color: var(--muted); max-width: 58ch; }
+.tl ul { margin: 8px 0 0; padding: 0; list-style: none; }
+.tl ul li { color: var(--muted); padding-left: 18px; position: relative; max-width: 58ch; }
+.tl ul li::before { content: ""; position: absolute; left: 0; top: .72em; width: 7px; height: 1px; background: var(--accent); }
+
+/* ---------- contact ---------- */
+#contact { padding-bottom: 84px; }
+.close {
+  font-family: var(--f-display); font-weight: 700;
+  font-size: clamp(2rem, 6.4vw, 4.2rem); line-height: .98;
+  letter-spacing: -.032em; font-variation-settings: "wdth" 80;
+  text-transform: uppercase; max-width: 15ch; margin: 0 0 12px;
+}
+.close-ar {
+  font-family: var(--f-ar); direction: rtl; text-align: right;
+  font-size: 1.02rem; line-height: 1.9; color: var(--muted);
+  max-width: min(42ch, 100%); margin: 0 0 34px; padding-right: 14px;
+  border-right: 2px solid var(--accent);
+}
+.channels { border-top: 1px solid var(--ink); margin-bottom: 30px; }
+.channels a {
+  display: grid; grid-template-columns: 108px minmax(0,1fr) 22px;
+  align-items: center; gap: 20px;
+  padding: 16px 4px; border-bottom: 1px solid var(--rule);
+  color: var(--ink); font-family: var(--f-mono); font-size: 13px;
+  letter-spacing: .03em; transition: background .16s ease, padding .16s ease;
+}
+.channels a .k { color: var(--muted); text-transform: uppercase; font-size: 10.5px; letter-spacing: .14em; }
+.channels a .v { overflow-wrap: anywhere; }
+.channels a .arw { color: var(--accent); text-align: right; }
+.channels a:hover { background: var(--accent-wash); padding-left: 12px; }
+
+.colophon {
+  font-family: var(--f-mono); font-size: 10.5px; line-height: 1.9;
+  letter-spacing: .06em; color: var(--muted);
+  border-top: 1px solid var(--rule); padding-top: 16px;
+  display: flex; flex-wrap: wrap; gap: 4px 28px; justify-content: space-between;
+}
+
+/* ---------- entrance ---------- */
+@keyframes riseIn { from { transform: translateY(102%); } to { transform: translateY(0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+.hero h1 .ln > span { animation: riseIn .82s cubic-bezier(.19,1,.22,1) both; }
+.hero h1 .ln:nth-child(2) > span { animation-delay: .09s; }
+.hero .role   { animation: fadeUp .6s ease .34s both; }
+.thesis       { animation: fadeUp .6s ease .44s both; }
+.thesis-ar    { animation: fadeUp .6s ease .52s both; }
+.cta-row      { animation: fadeUp .6s ease .60s both; }
+.facts        { animation: fadeUp .6s ease .68s both; }
+.eyebrow      { animation: fadeUp .5s ease .1s both; }
+.rail         { animation: fadeUp .6s ease .5s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1020px) {
+  .fig-grid { grid-template-columns: 1fr; gap: 26px; }
+  .svc-item { grid-template-columns: 34px minmax(0,1fr); }
+  .svc-item .stack { grid-column: 2; padding-top: 14px; }
+}
+@media (max-width: 860px) {
+  :root { --gutter: 0px; }
+  .shell { grid-template-columns: minmax(0, 1fr); padding: 0 22px; }
+  .rail {
+    position: sticky; top: 0; min-height: 0; grid-row: auto;
+    border-right: 0; border-bottom: 1px solid var(--rule);
+    background: var(--paper); padding: 10px 0 0; z-index: 20;
+    max-width: 100%;
+  }
+  .rail-mark, .rail-foot { display: none; }
+  .toc { display: flex; overflow-x: auto; gap: 0; padding: 0; scrollbar-width: none; max-width: 100%; }
+  .toc::-webkit-scrollbar { display: none; }
+  .toc a {
+    border-left: 0; border-bottom: 2px solid transparent;
+    margin-left: 0; padding: 8px 16px 10px 0; white-space: nowrap;
+    grid-template-columns: auto auto;
+  }
+  .toc a[aria-current="true"] { border-left-color: transparent; border-bottom-color: var(--accent); }
+  .hero { padding-top: 38px; }
+  section { padding-top: 56px; }
+  .facts { grid-template-columns: repeat(2, 1fr); }
+  .facts div:nth-child(2) { border-right: 0; }
+  .facts div:nth-child(1), .facts div:nth-child(2) { border-bottom: 1px solid var(--rule-soft); }
+  .tl > li { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .tl .when { padding-top: 0; }
+  .tier { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .tier .tag { padding-top: 0; }
+  .channels a { grid-template-columns: 86px minmax(0,1fr); gap: 12px; }
+  .channels a .arw { display: none; }
+  .sec-head { flex-wrap: wrap; }
+  .sec-head .aside { margin-left: 0; width: 100%; }
+}
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .fig-meta div { grid-template-columns: minmax(0, 1fr); gap: 0; margin-bottom: 8px; }
+  .channels a { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .svc-item { grid-template-columns: minmax(0, 1fr); }
+  .svc-item .idx { grid-column: 1; padding-top: 0; }
+  .svc-item .stack { grid-column: 1; }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+  .facts div { border-right: 0; border-bottom: 1px solid var(--rule-soft); }
+  .facts div:last-child { border-bottom: 0; }
+  .btn { flex: 1 1 100%; text-align: center; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell">
+
+  <!-- ======================= RAIL ======================= -->
+  <nav class="rail" aria-label="Sections">
+    <p class="rail-mark">
+      <b>Kareem Ayman</b>
+      Data analyst<br>
+      Beheira, Egypt
+    </p>
+    <ul class="toc">
+      <li><a href="#profile"><span class="n">§1</span> <span>Profile</span></a></li>
+      <li><a href="#services"><span class="n">§2</span> <span>Services</span></a></li>
+      <li><a href="#skills"><span class="n">§3</span> <span>Capabilities</span></a></li>
+      <li><a href="#work"><span class="n">§4</span> <span>Selected work</span></a></li>
+      <li><a href="#practice"><span class="n">§5</span> <span>Practice</span></a></li>
+      <li><a href="#education"><span class="n">§6</span> <span>Education</span></a></li>
+      <li><a href="#contact"><span class="n">§7</span> <span>Contact</span></a></li>
+    </ul>
+    <div class="rail-foot">
+      <a href="mailto:kemo69088@gmail.com">Email</a>
+      <a href="https://github.com/kemo69088-droid" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.kaggle.com/kareemayman26" target="_blank" rel="noopener">Kaggle</a>
+      <a href="https://lnkd.in/p/eFGr-GEG" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </nav>
+
+  <!-- ======================= BODY ======================= -->
+  <main class="body-col" id="main">
+
+    <!-- ---------- HERO ---------- -->
+    <header class="hero">
+      <p class="eyebrow">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Portfolio</span>
+        <span>&middot;</span>
+        <span>Data cleaning, analysis &amp; reporting</span>
+        <span>&middot;</span>
+        <span>Rev. 2026.09</span>
+      </p>
+
+      <h1>
+        <span class="ln"><span>Kareem</span></span>
+        <span class="ln"><span>Ayman</span></span>
+      </h1>
+
+      <p class="role">
+        <span>Data Analyst</span>
+        <em>Toward Machine Learning Engineer</em>
+      </p>
+
+      <p class="thesis">
+        I turn messy, scattered data into <mark>clean reports</mark> that people can decide from.
+      </p>
+
+      <p class="thesis-ar" lang="ar">
+        أُساعد أصحاب العمل وفِرق التوظيف على تحويل بياناتهم المبعثرة إلى تقارير نظيفة تُبنى عليها القرارات.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn primary" href="#work">See the work</a>
+        <a class="btn" href="mailto:kemo69088@gmail.com">Email me</a>
+      </div>
+
+      <dl class="facts">
+        <div><dt>Based in</dt><dd>El Delengat, Beheira &mdash; Egypt</dd></div>
+        <div><dt>Studying</dt><dd>B.Sc. Artificial Intelligence, 2024&ndash;2028</dd></div>
+        <div><dt>Training</dt><dd>DEPI Data Science &mdash; Round 5</dd></div>
+        <div><dt>Working in</dt><dd>Arabic &middot; English</dd></div>
+      </dl>
+    </header>
+
+    <!-- ---------- §1 PROFILE ---------- -->
+    <section id="profile" aria-labelledby="h-profile">
+      <div class="sec-head">
+        <span class="sig">§1</span>
+        <h2 id="h-profile">Profile</h2>
+      </div>
+      <div class="measure">
+        <p class="lead">I am an Artificial Intelligence undergraduate who spends most of his time on the unglamorous half of data work: getting a file into a state where it can actually answer a question.</p>
+        <p>My training runs on two tracks at once. At the Faculty of Artificial Intelligence, Kafr El-Sheikh University, I study the statistics and machine learning that sit underneath the tools. In the Digital Egypt Pioneers Initiative &mdash; Data Science track, Round 5 &mdash; I practise the applied side of it: cleaning, analysing, modelling and reporting on real datasets.</p>
+        <p>What I offer is not a long list of technologies. It is a short one I can defend in a room: Excel and SQL to get the data out, Python to clean and analyse it, Power&nbsp;BI to put it in front of the person who has to make the call. Where a question needs a model rather than a report, I build one &mdash; regression for numbers, convolutional networks for images.</p>
+        <p>I work in Arabic natively and in English at an intermediate level, which is enough to read documentation, write a report, and sit an interview.</p>
+      </div>
+    </section>
+
+    <!-- ---------- §2 SERVICES ---------- -->
+    <section id="services" aria-labelledby="h-services">
+      <div class="sec-head">
+        <span class="sig">§2</span>
+        <h2 id="h-services">Services offered</h2>
+        <span class="aside">Freelance &amp; contract</span>
+      </div>
+      <div class="svc">
+
+        <article class="svc-item">
+          <span class="idx">01</span>
+          <div>
+            <h3>Data cleaning &amp; preparation</h3>
+            <p>Duplicate rows, inconsistent dates, missing values, one column holding three different things. I take the file as it arrives and return one you can trust &mdash; with a written note of every change I made and why.</p>
+          </div>
+          <p class="stack"><b>Worked in</b><span>Microsoft Excel</span><span>Python &middot; pandas</span><span>SQL</span></p>
+        </article>
+
+        <article class="svc-item">
+          <span class="idx">02</span>
+          <div>
+            <h3>Exploratory data analysis</h3>
+            <p>The questions that come before the dashboard: what is actually in this data, what moves together with what, where the outliers are, and which of the findings still holds after a second look.</p>
+          </div>
+          <p class="stack"><b>Worked in</b><span>pandas &middot; NumPy</span><span>Matplotlib</span><span>Statistics &amp; probability</span></p>
+        </article>
+
+        <article class="svc-item">
+          <span class="idx">03</span>
+          <div>
+            <h3>Reporting &amp; insight delivery</h3>
+            <p>Findings written for the person who has to act on them, not for another analyst. A short report or a Power&nbsp;BI page, with the assumptions stated openly and every number traceable back to the source table.</p>
+          </div>
+          <p class="stack"><b>Worked in</b><span>Power BI</span><span>Microsoft Excel</span><span>Matplotlib</span></p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ---------- §3 SKILLS ---------- -->
+    <section id="skills" aria-labelledby="h-skills">
+      <div class="sec-head">
+        <span class="sig">§3</span>
+        <h2 id="h-skills">Capabilities</h2>
+        <span class="aside">Weighted by what I use daily</span>
+      </div>
+
+      <div class="tier tier-1">
+        <p class="tag">Core</p>
+        <ul>
+          <li>Python <small>pandas &middot; NumPy &middot; Matplotlib</small></li>
+          <li>Power BI <small>report building</small></li>
+          <li>Microsoft Excel <small>PivotTables &middot; formulas</small></li>
+        </ul>
+      </div>
+
+      <div class="tier tier-2">
+        <p class="tag">Working</p>
+        <ul>
+          <li>SQL <small>SELECT &middot; WHERE &middot; GROUP BY &middot; JOIN</small></li>
+          <li>scikit-learn <small>regression &middot; model evaluation</small></li>
+          <li>TensorFlow <small>convolutional networks</small></li>
+        </ul>
+      </div>
+
+      <div class="tier tier-3">
+        <p class="tag">Foundations</p>
+        <ul>
+          <li>Statistics &amp; probability</li>
+          <li>Kaggle &mdash; practice datasets</li>
+          <li>Data storytelling</li>
+        </ul>
+      </div>
+
+      <div class="tier tier-2 learning">
+        <p class="tag">In progress</p>
+        <ul>
+          <li>Computer vision <small>Aug &ndash; Dec 2026 &middot; preprocessing, CNNs, augmentation, transfer learning, object detection</small></li>
+        </ul>
+      </div>
+
+      <p class="langs"><b>Languages</b> &nbsp; Arabic &mdash; native &nbsp;&middot;&nbsp; English &mdash; intermediate</p>
+    </section>
+
+    <!-- ---------- §4 WORK ---------- -->
+    <section id="work" aria-labelledby="h-work">
+      <div class="sec-head">
+        <span class="sig">§4</span>
+        <h2 id="h-work">Selected work</h2>
+        <span class="aside">Three figures</span>
+      </div>
+
+      <!-- FIG 01 -->
+      <article class="fig">
+        <div class="fig-head">
+          <span class="no">Fig. 01</span>
+          <h3>Cat &amp; dog image classifier</h3>
+        </div>
+        <div class="fig-grid">
+          <div class="fig-copy">
+            <p>A convolutional neural network that reads a photograph and labels it as a cat or a dog. Built end to end: preparing and augmenting the image set, designing the network, training it against a held-out validation split, then reading the loss and accuracy curves to see where it was learning and where it was memorising.</p>
+            <p>The value of this one was not the labels. It was learning to tell a model that is genuinely generalising from one that has simply learned the training set by heart.</p>
+            <dl class="fig-meta">
+              <div><dt>Role</dt><dd>Built end to end, solo</dd></div>
+              <div><dt>Stack</dt><dd>Python &middot; TensorFlow &middot; NumPy &middot; Matplotlib</dd></div>
+              <div><dt>Focus</dt><dd>Preprocessing, augmentation, CNN architecture, overfitting control</dd></div>
+            </dl>
+          </div>
+          <figure class="plate">
+            <svg viewBox="0 0 420 300" role="img" aria-label="Schematic of an image classifier: a grid of input image tiles feeding a network, with two class output bars and a training loss curve.">
+              <g font-family="IBM Plex Mono, monospace" font-size="8.5" fill="var(--muted)" letter-spacing="0.6">
+                <text x="10" y="16">INPUT BATCH</text>
+                <text x="196" y="16">CONV STACK</text>
+                <text x="306" y="16">OUTPUT</text>
+              </g>
+              <!-- input tiles -->
+              <g>
+                <rect x="10" y="26" width="48" height="48" fill="var(--rule-soft)" stroke="var(--rule)"/>
+                <circle cx="34" cy="46" r="11" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+                <path d="M25 38 L28 30 L33 37 M43 38 L40 30 L35 37" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+                <rect x="64" y="26" width="48" height="48" fill="var(--rule-soft)" stroke="var(--rule)"/>
+                <ellipse cx="88" cy="48" rx="13" ry="10" fill="none" stroke="var(--fig-b)" stroke-width="1.4"/>
+                <path d="M78 40 Q76 30 83 33 M98 40 Q100 30 93 33" fill="none" stroke="var(--fig-b)" stroke-width="1.4"/>
+                <rect x="10" y="80" width="48" height="48" fill="var(--rule-soft)" stroke="var(--rule)"/>
+                <ellipse cx="34" cy="102" rx="13" ry="10" fill="none" stroke="var(--fig-b)" stroke-width="1.4"/>
+                <path d="M24 94 Q22 84 29 87 M44 94 Q46 84 39 87" fill="none" stroke="var(--fig-b)" stroke-width="1.4"/>
+                <rect x="64" y="80" width="48" height="48" fill="var(--rule-soft)" stroke="var(--rule)"/>
+                <circle cx="88" cy="100" r="11" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+                <path d="M79 92 L82 84 L87 91 M97 92 L94 84 L89 91" fill="none" stroke="var(--accent)" stroke-width="1.4"/>
+              </g>
+              <!-- flow -->
+              <path d="M118 77 L138 77" stroke="var(--rule)" stroke-width="1"/>
+              <!-- conv stack -->
+              <g fill="none" stroke="var(--ink)" stroke-width="1">
+                <rect x="142" y="40" width="20" height="74"/>
+                <rect x="170" y="52" width="16" height="50"/>
+                <rect x="194" y="62" width="12" height="30"/>
+                <rect x="214" y="68" width="8" height="18"/>
+              </g>
+              <g font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">
+                <text x="142" y="126">conv</text>
+                <text x="168" y="126">pool</text>
+                <text x="192" y="126">conv</text>
+                <text x="210" y="126">dense</text>
+              </g>
+              <path d="M228 77 L246 77" stroke="var(--rule)" stroke-width="1"/>
+              <!-- output bars -->
+              <g font-family="IBM Plex Mono, monospace" font-size="8.5" fill="var(--ink)">
+                <text x="252" y="58">CAT</text>
+                <text x="252" y="90">DOG</text>
+              </g>
+              <rect x="284" y="49" width="126" height="11" fill="none" stroke="var(--rule)"/>
+              <rect x="284" y="49" width="98" height="11" fill="var(--accent)"/>
+              <rect x="284" y="81" width="126" height="11" fill="none" stroke="var(--rule)"/>
+              <rect x="284" y="81" width="28" height="11" fill="var(--rule)"/>
+              <text x="284" y="108" font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)">class score, illustrative</text>
+              <!-- loss curve -->
+              <g>
+                <line x1="10" y1="272" x2="410" y2="272" stroke="var(--ink)" stroke-width="1"/>
+                <line x1="10" y1="160" x2="10" y2="272" stroke="var(--ink)" stroke-width="1"/>
+                <text x="10" y="152" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="var(--muted)">TRAINING CURVES</text>
+                <path d="M10 168 C 70 200, 120 238, 180 250 S 300 262, 410 265" fill="none" stroke="var(--accent)" stroke-width="1.8"/>
+                <path d="M10 174 C 70 208, 120 240, 180 246 S 300 244, 410 240" fill="none" stroke="var(--fig-b)" stroke-width="1.4" stroke-dasharray="4 3"/>
+                <g font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--muted)">
+                  <text x="352" y="286">epoch</text>
+                  <text x="16" y="188" transform="rotate(-90 16 188)">loss</text>
+                  <text x="300" y="176" fill="var(--accent)">train</text>
+                  <text x="340" y="176" fill="var(--fig-b)">validation</text>
+                </g>
+              </g>
+            </svg>
+            <figcaption>Schematic. Shapes the pipeline and the curves I read while training &mdash; not measured results.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- FIG 02 -->
+      <article class="fig">
+        <div class="fig-head">
+          <span class="no">Fig. 02</span>
+          <h3>House price prediction</h3>
+        </div>
+        <div class="fig-grid">
+          <div class="fig-copy">
+            <p>A regression model that estimates the price of a property from its features. The interesting part sat before the model: deciding which columns carried real signal, handling the missing ones honestly, and splitting the data so the score I reported was earned on rows the model had never seen.</p>
+            <p>I evaluate it the way a client would want it evaluated &mdash; by plotting predicted against actual and looking at where, and for which kind of property, it is wrong.</p>
+            <dl class="fig-meta">
+              <div><dt>Role</dt><dd>Built end to end, solo</dd></div>
+              <div><dt>Stack</dt><dd>Python &middot; pandas &middot; scikit-learn &middot; Matplotlib</dd></div>
+              <div><dt>Focus</dt><dd>Feature preparation, train/test split, regression, error inspection</dd></div>
+            </dl>
+          </div>
+          <figure class="plate">
+            <svg viewBox="0 0 420 300" role="img" aria-label="Schematic scatter plot of predicted against actual price, with a diagonal perfect-prediction reference line and a residual strip below.">
+              <text x="10" y="16" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="var(--muted)" letter-spacing="0.6">PREDICTED vs ACTUAL</text>
+              <g stroke="var(--rule-soft)" stroke-width="1">
+                <line x1="70" y1="30" x2="70" y2="212"/><line x1="130" y1="30" x2="130" y2="212"/>
+                <line x1="190" y1="30" x2="190" y2="212"/><line x1="250" y1="30" x2="250" y2="212"/>
+                <line x1="310" y1="30" x2="310" y2="212"/>
+                <line x1="34" y1="66" x2="370" y2="66"/><line x1="34" y1="102" x2="370" y2="102"/>
+                <line x1="34" y1="138" x2="370" y2="138"/><line x1="34" y1="174" x2="370" y2="174"/>
+              </g>
+              <line x1="34" y1="212" x2="370" y2="212" stroke="var(--ink)" stroke-width="1"/>
+              <line x1="34" y1="30" x2="34" y2="212" stroke="var(--ink)" stroke-width="1"/>
+              <line x1="34" y1="212" x2="370" y2="34" stroke="var(--fig-b)" stroke-width="1.3" stroke-dasharray="5 4"/>
+              <g id="scatter" fill="var(--accent)" fill-opacity="0.72"></g>
+              <text x="376" y="40" font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--fig-b)">y = x</text>
+              <g font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--muted)">
+                <text x="286" y="228">actual price</text>
+                <text x="24" y="120" transform="rotate(-90 24 120)">predicted</text>
+              </g>
+              <text x="10" y="256" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="var(--muted)" letter-spacing="0.6">RESIDUALS</text>
+              <line x1="34" y1="278" x2="370" y2="278" stroke="var(--rule)" stroke-width="1"/>
+              <g id="resid" stroke="var(--accent)" stroke-width="1.6" stroke-opacity="0.6"></g>
+            </svg>
+            <figcaption>Schematic. The two plots I actually read when judging a regression &mdash; fit against the diagonal, then residuals. Illustrative points.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- FIG 03 -->
+      <article class="fig">
+        <div class="fig-head">
+          <span class="no">Fig. 03</span>
+          <h3>Olist Brazilian e-commerce analysis</h3>
+          <span class="status">In progress &mdash; DEPI R5</span>
+        </div>
+        <div class="fig-grid">
+          <div class="fig-copy">
+            <p>A Power&nbsp;BI report built on the public Olist dataset: seven related tables covering orders, order items, payments, reviews, customers, products and sellers. The first half of the job is modelling &mdash; joining those tables into something that answers questions without double-counting a single order.</p>
+            <p>The second half is deciding what a store owner would actually want on the page: where the orders come from, how people pay, how long delivery takes, and what the review scores say about the difference.</p>
+            <dl class="fig-meta">
+              <div><dt>Role</dt><dd>Data model and report, solo</dd></div>
+              <div><dt>Stack</dt><dd>Power BI &middot; Microsoft Excel</dd></div>
+              <div><dt>Focus</dt><dd>Seven-table model, order flow, payment behaviour, review scores</dd></div>
+            </dl>
+          </div>
+          <figure class="plate">
+            <svg viewBox="0 0 420 300" role="img" aria-label="Mock-up of a Power BI report page: a KPI strip, a bar chart of orders by state, a monthly order trend line and a review score distribution.">
+              <rect x="6" y="6" width="408" height="288" fill="none" stroke="var(--rule)"/>
+              <rect x="6" y="6" width="408" height="22" fill="var(--rule-soft)"/>
+              <text x="14" y="21" font-family="IBM Plex Mono, monospace" font-size="8.5" fill="var(--ink)" letter-spacing="0.8">OLIST &mdash; ORDER OVERVIEW</text>
+              <text x="330" y="21" font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--muted)">7 tables joined</text>
+              <!-- KPI strip -->
+              <g>
+                <rect x="14" y="38" width="126" height="40" fill="none" stroke="var(--rule)"/>
+                <rect x="148" y="38" width="126" height="40" fill="none" stroke="var(--rule)"/>
+                <rect x="282" y="38" width="124" height="40" fill="none" stroke="var(--rule)"/>
+                <g font-family="IBM Plex Mono, monospace" font-size="7" fill="var(--muted)" letter-spacing="0.7">
+                  <text x="22" y="52">ORDERS</text><text x="156" y="52">AVG PAYMENT</text><text x="290" y="52">AVG REVIEW</text>
+                </g>
+                <g fill="var(--rule)">
+                  <rect x="22" y="58" width="10" height="13"/><rect x="35" y="58" width="10" height="13"/><rect x="48" y="58" width="10" height="13"/>
+                  <rect x="156" y="58" width="10" height="13"/><rect x="169" y="58" width="10" height="13"/><rect x="182" y="58" width="10" height="13"/>
+                  <rect x="290" y="58" width="10" height="13"/><rect x="303" y="58" width="10" height="13"/>
+                </g>
+              </g>
+              <!-- bar chart -->
+              <g>
+                <text x="14" y="98" font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--muted)" letter-spacing="0.7">ORDERS BY STATE</text>
+                <line x1="14" y1="188" x2="196" y2="188" stroke="var(--ink)" stroke-width="1"/>
+                <g fill="var(--accent)">
+                  <rect x="20" y="108" width="16" height="80"/><rect x="44" y="128" width="16" height="60"/>
+                  <rect x="68" y="142" width="16" height="46"/><rect x="92" y="152" width="16" height="36"/>
+                  <rect x="116" y="160" width="16" height="28"/><rect x="140" y="167" width="16" height="21"/>
+                  <rect x="164" y="173" width="16" height="15"/>
+                </g>
+              </g>
+              <!-- line chart -->
+              <g>
+                <text x="216" y="98" font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--muted)" letter-spacing="0.7">ORDERS PER MONTH</text>
+                <line x1="216" y1="188" x2="406" y2="188" stroke="var(--ink)" stroke-width="1"/>
+                <path d="M220 176 L244 168 L268 172 L292 152 L316 140 L340 146 L364 120 L390 112" fill="none" stroke="var(--fig-b)" stroke-width="1.8"/>
+                <g fill="var(--fig-b)">
+                  <circle cx="292" cy="152" r="2"/><circle cx="364" cy="120" r="2"/><circle cx="390" cy="112" r="2.6"/>
+                </g>
+              </g>
+              <!-- review distribution -->
+              <g>
+                <text x="14" y="212" font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--muted)" letter-spacing="0.7">REVIEW SCORE DISTRIBUTION</text>
+                <line x1="14" y1="278" x2="406" y2="278" stroke="var(--ink)" stroke-width="1"/>
+                <g fill="var(--accent)" fill-opacity="0.85">
+                  <rect x="30" y="256" width="52" height="22"/>
+                  <rect x="106" y="262" width="52" height="16"/>
+                  <rect x="182" y="252" width="52" height="26"/>
+                  <rect x="258" y="238" width="52" height="40"/>
+                  <rect x="334" y="222" width="52" height="56"/>
+                </g>
+                <g font-family="IBM Plex Mono, monospace" font-size="7.5" fill="var(--muted)">
+                  <text x="53" y="290">1</text><text x="129" y="290">2</text><text x="205" y="290">3</text><text x="281" y="290">4</text><text x="357" y="290">5</text>
+                </g>
+              </g>
+            </svg>
+            <figcaption>Report mock-up. Layout and chart choices for the page; values are placeholders while the model is still being built.</figcaption>
+          </figure>
+        </div>
+      </article>
+    </section>
+
+    <!-- ---------- §5 PRACTICE ---------- -->
+    <section id="practice" aria-labelledby="h-practice">
+      <div class="sec-head">
+        <span class="sig">§5</span>
+        <h2 id="h-practice">Practice</h2>
+        <span class="aside">Where the work comes from</span>
+      </div>
+      <ol class="tl">
+        <li>
+          <p class="when">2026 &mdash; Dec 2026</p>
+          <div>
+            <h3>Data Science trainee</h3>
+            <p class="org">Digital Egypt Pioneers Initiative (DEPI) &mdash; Round 5</p>
+            <p>An applied national training track in data science, running alongside my degree.</p>
+            <ul>
+              <li>Cleaning and modelling real multi-table datasets, currently the Olist e-commerce data in Power&nbsp;BI</li>
+              <li>Building reports intended to be read by someone who is not an analyst</li>
+              <li>Professional practice: CV, career planning, freelancing and interviewing</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <p class="when">Ongoing</p>
+          <div>
+            <h3>Freelance data work</h3>
+            <p class="org">Independent &mdash; remote</p>
+            <p>Short engagements for individual clients: taking a spreadsheet or an export that nobody can read yet, cleaning it, analysing it, and returning findings as a report or a Power&nbsp;BI page.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">Aug &mdash; Dec 2026</p>
+          <div>
+            <h3>Computer vision study track</h3>
+            <p class="org">Self-directed, planned on a dated board</p>
+            <p>A sequenced plan rather than a wishlist: image preprocessing, CNN architecture, data augmentation, transfer learning, basic object detection, a mini-project, then publishing the result to GitHub.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ---------- §6 EDUCATION ---------- -->
+    <section id="education" aria-labelledby="h-education">
+      <div class="sec-head">
+        <span class="sig">§6</span>
+        <h2 id="h-education">Education</h2>
+      </div>
+      <ol class="tl">
+        <li>
+          <p class="when">2024 &ndash; 2028</p>
+          <div>
+            <h3>B.Sc. Artificial Intelligence</h3>
+            <p class="org">Faculty of Artificial Intelligence &mdash; Kafr El-Sheikh University, Egypt</p>
+            <p>Expected 2028. Coursework in statistics and probability, machine learning, and programming for data.</p>
+          </div>
+        </li>
+        <li>
+          <p class="when">2026</p>
+          <div>
+            <h3>Data Science track &mdash; Round 5</h3>
+            <p class="org">Digital Egypt Pioneers Initiative (DEPI) &mdash; رواد مصر الرقمية</p>
+            <p>Applied training in data cleaning, analysis, machine learning and reporting. Concludes December 2026.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ---------- §7 CONTACT ---------- -->
+    <section id="contact" aria-labelledby="h-contact">
+      <div class="sec-head">
+        <span class="sig">§7</span>
+        <h2 id="h-contact">Contact</h2>
+      </div>
+
+      <p class="close">Send me the file nobody wants to open.</p>
+      <p class="close-ar" lang="ar">لو عندك بيانات مبعثرة ومحتاج تطلع منها بقرار، اتواصل معي.</p>
+
+      <div class="channels">
+        <a href="mailto:kemo69088@gmail.com">
+          <span class="k">Email</span><span class="v">kemo69088@gmail.com</span><span class="arw" aria-hidden="true">&rarr;</span>
+        </a>
+        <a href="https://www.kaggle.com/kareemayman26" target="_blank" rel="noopener">
+          <span class="k">Kaggle</span><span class="v">kaggle.com/kareemayman26</span><span class="arw" aria-hidden="true">&rarr;</span>
+        </a>
+        <a href="https://github.com/kemo69088-droid" target="_blank" rel="noopener">
+          <span class="k">GitHub</span><span class="v">github.com/kemo69088-droid</span><span class="arw" aria-hidden="true">&rarr;</span>
+        </a>
+        <a href="https://lnkd.in/p/eFGr-GEG" target="_blank" rel="noopener">
+          <span class="k">LinkedIn</span><span class="v">lnkd.in/p/eFGr-GEG</span><span class="arw" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <p class="colophon">
+        <span>Kareem Ayman &mdash; Data Analyst &middot; El Delengat, Beheira, Egypt</span>
+        <span>Set in Bricolage Grotesque, Newsreader &amp; IBM Plex Mono</span>
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---- deterministic illustrative points for Fig. 02 ---- */
+  var seed = 20260908;
+  function rnd() { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; }
+
+  var scatter = document.getElementById("scatter");
+  var resid = document.getElementById("resid");
+  if (scatter && resid) {
+    var NS = "http://www.w3.org/2000/svg";
+    for (var i = 0; i < 46; i++) {
+      var t = 0.04 + rnd() * 0.92;                 // position along the diagonal
+      var spread = (rnd() - 0.5) * 30 * (0.5 + t); // wider error on expensive homes
+      var x = 34 + t * 336;
+      var y = 212 - t * 178 + spread;
+      if (y < 34) { y = 34; } if (y > 210) { y = 210; }
+      var c = document.createElementNS(NS, "circle");
+      c.setAttribute("cx", x.toFixed(1));
+      c.setAttribute("cy", y.toFixed(1));
+      c.setAttribute("r", "2.6");
+      scatter.appendChild(c);
+
+      var rl = document.createElementNS(NS, "line");
+      rl.setAttribute("x1", x.toFixed(1));
+      rl.setAttribute("x2", x.toFixed(1));
+      rl.setAttribute("y1", "278");
+      rl.setAttribute("y2", (278 + spread * 0.42).toFixed(1));
+      resid.appendChild(rl);
+    }
+  }
+
+  /* ---- rail: mark the section being read ---- */
+  var links = Array.prototype.slice.call(document.querySelectorAll(".toc a"));
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute("href").slice(1)] = a; });
+
+  function setCurrent(id) {
+    links.forEach(function (a) { a.removeAttribute("aria-current"); });
+    if (map[id]) { map[id].setAttribute("aria-current", "true"); }
+  }
+
+  if ("IntersectionObserver" in window) {
+    var seen = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { seen[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
+      var best = null, bestRatio = 0;
+      Object.keys(seen).forEach(function (id) {
+        if (seen[id] > bestRatio) { bestRatio = seen[id]; best = id; }
+      });
+      if (best) { setCurrent(best); }
+    }, { rootMargin: "-15% 0px -55% 0px", threshold: [0, 0.15, 0.4, 0.8] });
+
+    document.querySelectorAll("main section[id]").forEach(function (s) { io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
